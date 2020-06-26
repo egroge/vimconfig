@@ -1,10 +1,6 @@
 set nocompatible
 
-"TODO try to get YCM working. Would be pretty nice
 call plug#begin('~/.vim/plugged')
-  "Python
-  Plug 'tmhedberg/SimpylFold'
-
   "Haskell
   Plug 'neovimhaskell/haskell-vim'
   Plug 'nbouscal/vim-stylish-haskell'
@@ -13,27 +9,31 @@ call plug#begin('~/.vim/plugged')
   "Vim
   Plug 'preservim/nerdtree'
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'Chiel92/vim-autoformat'
-  let g:formatterpath = ['Downloads/clang-formatter.py']
-  
-  nmap <leader>qf <Plug>(coc-fix-current)
-  nmap <leader>ac  <Plug>(coc-codeaction)
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  Plug 'ycm-core/YouCompleteMe'
+
+  "C
+  packadd termdebug
+  let g:termdebug_wide = 1
 call plug#end()
 
 "splitting windows
 set splitbelow
 set splitright
 
+set mouse=a
+
+nnoremap <C-f> :YcmCompleter Format<CR>
+nnoremap <C-d> :YcmCompleter GetDoc<CR>
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Folding of methods and stuff
-set foldmethod=indent
-set foldlevel=99
+"Autopair curly braces when making code block
+inoremap {<CR> {<CR>}<ESC>O
 
 syntax on
 set number
@@ -45,31 +45,4 @@ set expandtab
 set background=dark
 colorscheme palenight
 
-"Python stuff
-au BufNewFile,BufRead *.py
-    \ set tabstop=4       |
-    \ set softtabstop=4   |
-    \ set shiftwidth=4    |
-    \ set textwidth=79    |
-    \ set expandtab       |
-    \ set autoindent      |
-    \ set fileformat=unix
-
-"Haskell stuff
-au BufNewFile,BufRead *.hs
-    \ set tabstop=2       |
-    \ set softtabstop=2   |
-    \ set shiftwidth=2    |
-    \ set textwidth=79    |
-    \ set expandtab       |
-    \ set autoindent      |
-    \ set fileformat=unix
-
-"C stuff
-au BufNewFile, BufRead *.c
-    \ set tabstop=2       |
-    \ set softtabstop=2   |
-    \ set shiftwidth=2    |
-    \ set noexpandtab
-    \ set colorcolumn=100
-    \ highlight ColorColumn ctermbg=darkgreen
+highlight LineNr ctermfg=darkgrey
