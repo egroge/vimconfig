@@ -26,6 +26,7 @@ nnoremap <C-f> :YcmCompleter Format<CR>
 nnoremap <C-d> :YcmCompleter GetDoc<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_always_populate_location_list = 1
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
