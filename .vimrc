@@ -22,6 +22,8 @@ set splitright
 
 set mouse=a
 
+
+nnoremap <C-g> :YcmCompleter GoTo<CR>
 nnoremap <C-f> :YcmCompleter Format<CR>
 nnoremap <C-d> :YcmCompleter GetDoc<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
